@@ -10,7 +10,7 @@ I made this because there wasn't a dead-simple way to make a static HTML site us
 2. Run Guard with `guard`
 3. Run a static HTTP server e.g. `python -m http.server -d dist` (then open `localhost:8000`)
 2. Add Slim files in `src/`
-3. Include partials using the `partial` helper, e.g.:
+3. Include partials using the `partial` helper (make sure to use the double equals `==` so nothing gets escaped)
 
 	```ruby
 	body
