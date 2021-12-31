@@ -19,14 +19,14 @@ I made this because there wasn't a dead-simple way to make a static HTML site us
 	```
 4. Put static assets in `src/public`
 
-... and that's about it.
+... and that's about it. The Guard process will watch for all changes to the `src` directory, and rebuild `dist` each time. You _do_ have to press reload in your browser.
 
-The Guard process will watch for all changes to the `src` directory, and rebuild `dist` each time.
+### Notes
 
-You _do_ have to press reload in your browser.
+Files in `public/` will be copied as-is. 
 
-Enjoy.
+Other than that, `.slim` files at the top level of `src` are the _only things_ supported.
 
-
+_But what about my scripts and styles?_ Slim supports writing all this stuff inline. See https://rdoc.info/gems/slim/frames#embedded-engines-markdown
 
 
