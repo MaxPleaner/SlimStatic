@@ -10,14 +10,22 @@ I made this because there wasn't a dead-simple way to make a static HTML site us
 2. Run Guard with `guard`. You can alternatively just run `ruby build.rb` manually.
 3. Run a static HTTP server e.g. `python -m http.server -d dist` (then open `localhost:8000`)
 2. Add Slim files in `src/`
-3. Include partials using the `partial` helper (make sure to use the double equals `==` so nothing gets escaped)
+3. Include partials using the `partial` helper (make sure to use the double equals `==` so nothing gets escaped). You can also pass custom data to the partial and then read it through `PartialData`.
 
 	```ruby
 	body
 	  == partial("./src/shared/nav.slim")
+	  == partial("./src/shared/other_partial.slim", { custom_arg: "foo" })
 	
 	```
-4. Put static assets in `src/public`
+
+	```ruby
+	# in other_partial.slim
+	= PartialData[:custom_arg]
+	
+	```
+
+5. Put static assets in `src/public`
 
 ... and that's about it. The Guard process will watch for all changes to the `src` directory, and rebuild `dist` each time. You _do_ have to press reload in your browser.
 
