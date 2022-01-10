@@ -31,10 +31,12 @@ I made this because there wasn't a dead-simple way to make a static HTML site us
 
 ### Notes
 
-Files in `public/` will be copied as-is. 
+- Files in `public/` will be copied as-is. 
 
-Other than that, `.slim` files at the top level of `src` are the _only things_ supported.
+- Other than that, `.slim` files at the top level of `src` are the _only things_ supported.
 
-_But what about my scripts and styles?_ Slim supports writing all this stuff inline. See https://rdoc.info/gems/slim/frames#embedded-engines-markdown
+- _But what about my scripts and styles?_ Slim supports writing all this stuff inline. See https://rdoc.info/gems/slim/frames#embedded-engines-markdown
+
+- If you want to use the `markdown` preprocessor, you need to install `pandoc` to your system as well.
 
 
