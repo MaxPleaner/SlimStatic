@@ -1,8 +1,9 @@
-source "http://rubygems.org"
+# https://github.com/guard/guard#readme
 
-gem "slim"
-gem 'guard'
-gem 'guard-shell'
-gem 'sass'
-gem 'pry'
-gem 'pandoc-ruby'
+require './build.rb'
+
+guard :shell do
+  watch(/src\/(.*)/) do |match|
+    SiteBuilder.run
+  end
+end

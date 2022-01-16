@@ -28,17 +28,24 @@ class SiteBuilder
 	def self.run
 		FileUtils.rm_rf("./dist/.", secure: true)
 		FileUtils.mkdir_p("./dist/public")
-		Dir.glob("./src/*.slim").each do |src|
-			dest = src.gsub("/src/", "/dist/").gsub(".slim", ".html")
-			render_slim(src, dest)
-			puts "built #{src}"
-		end
 
-		Dir.glob("./src/public/**/*").each do |src|
-			dest = src.gsub("/src/", "/dist/")
-			FileUtils.copy(src, dest)
-			puts "built #{src}"
+		["./src/pages", "./src/public"].each do |dir_prefix|
+			Dir.glob("#{dir_prefix}/**/*").each do |src|
+				dest = src.gsub("/src/", "/dist/").gsub("/pages/", "/")
+				if File.directory?(src)
+					FileUtils.mkdir_p(dest)
+				else
+					if dest.end_with?(".slim")
+						dest.gsub!(".slim", ".html")
+						render_slim(src, dest)
+					else
+						FileUtils.copy(src, dest)
+					end
+				end
+			end
 		end
+		
+		puts "done"
 	end
 end
 
